@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,13 +7,9 @@ import { Card } from "@/components/ui/card";
 import { Navbar } from "@/components/Navbar";
 import { FloatingCube } from "@/components/FloatingCube";
 import { Upload } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "sonner";
 
 export default function Auth() {
-  const navigate = useNavigate();
-  const { user, userRole, signIn, signUp } = useAuth();
-  
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [registerName, setRegisterName] = useState("");
@@ -22,24 +18,14 @@ export default function Auth() {
   const [registerPhone, setRegisterPhone] = useState("");
   const [registerAddress, setRegisterAddress] = useState("");
 
-  useEffect(() => {
-    if (user) {
-      if (userRole === 'admin') {
-        navigate('/owner');
-      } else {
-        navigate('/dashboard');
-      }
-    }
-  }, [user, userRole, navigate]);
-
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    await signIn(loginEmail, loginPassword);
+    toast.success("Login functionality will be connected to backend");
   };
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    await signUp(registerEmail, registerPassword, registerName);
+    toast.success("Registration functionality will be connected to backend");
   };
 
   return (
