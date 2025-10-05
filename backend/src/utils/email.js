@@ -15,7 +15,7 @@ if (smtpHost && smtpUser && smtpPass) {
       user: smtpUser,
       pass: smtpPass
     }
-  });
+  });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
 } else {
   console.warn('SMTP not configured; emails will be skipped.');
 }
